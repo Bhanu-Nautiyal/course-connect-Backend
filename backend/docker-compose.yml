@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.0    # MySQL image version
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Set the root password
+      MYSQL_DATABASE: ${DB_NAME}         # Optional: Create a default database
+    ports:
+      - "3300:3306"                      
+    volumes:
+      - mysql_data:/var/lib/mysql        # storing data locally
+      - ./mysql-init:/docker-entrypoint-initdb.d # To initialize the database
+
+volumes:
+  mysql_data:
+

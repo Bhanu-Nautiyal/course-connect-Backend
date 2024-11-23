@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+
+/* Custom Scrollbar*/
+.scrollbar::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  width: 6px; /* Width of the scrollbar */
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #002145; /* Thumb color */
+  border-radius: 3px; /* Rounded corners for thumb */
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #002145; /* Thumb color on hover */
+}
+
+/* Custom University Banner*/
+.university-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .university-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/course/university-banner.png'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Ensure the background is behind the content */
+    transform: scale(1);
+    transition: transform 10s ease-in-out;
+    animation: zoomBackground 5s ease-in-out forwards;
+  }
+  
+  @keyframes zoomBackground {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1); /* Adjust this value for the desired zoom level */
+    }
+  }
+
+/* End of Custom University Banner*/
+
+@layer components {
+  .gsap-reveal-img {
+    @apply relative overflow-hidden;
+  }
+
+  .gsap-reveal-img .reveal-wrap {
+    @apply relative overflow-hidden;
+  }
+
+  .gsap-reveal-img .reveal-wrap .cover {
+    @apply absolute inset-0 bg-gray-200 -ml-[100%] z-10;
+  }
+
+  .gsap-reveal-img .reveal-wrap .reveal-content {
+    @apply opacity-0 invisible;
+  }
+
+  .portfolio-item:hover img {
+    @apply scale-105 transition-transform duration-300;
+  }
+
+  .portfolio-item .overlay {
+    @apply absolute inset-0 bg-black bg-opacity-50 opacity-0 invisible transition-all duration-300;
+  }
+
+  .portfolio-item:hover .overlay {
+    @apply opacity-100 visible;
+  }
+}
